@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
+<meta name="description" content="Juego para aprender a manejar el teclado">
+<meta name="keywords" content="juego,teclado,mecanografía,letras">
+<title>Atrapa la letra</title>
+<link href="css/main_pri.css" rel="stylesheet" type="text/css">
+<link href="css/doc.css" rel="stylesheet" type="text/css">
+
+
+<script type="text/javascript" src="js/jquery-2-1.0.3.min.js"></script>
+<script type="text/javascript" src="js/jquery.hotkeys.js"></script>
+<script type="text/javascript" src="js/jquery.transform-0.9.3.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.10.3.custom.min.js"></script>
+<script type="text/javascript" src="js/jquery.ui.touch-punch.min.js"></script>
+<script type="text/javascript" src="js/preloader.js"></script>
+<script type="text/javascript" src="js/animator.js"></script>
+<script type="text/javascript" src="js/createjs.2018.min.js"></script>
+<script type="text/javascript" src="js/postMessage.js"></script>
+
+<script type="text/javascript" src="data/texts/strings.js"></script>
+
+<script type="text/javascript" src="js/main.js"></script>
+
+
+<script type="text/javascript" src="js/data.js"></script>
+<script type="text/javascript" src="js/setup.js"></script>
+<script type="text/javascript" src="js/keyboard.js"></script>
+<script type="text/javascript" src="js/doc.js"></script>
+</head>
+<body style="overflow: hidden;">
+<div class="medio">
+<div class="logo" style=""><img src="data/res/sm.png" type="image/svg+xml"></div>
+
+<div id="spinner" style="background-color:#FFF; opacity: 1;">
+<div class="ldbck2"></div>
+<div class="ldtop2"></div>
+</div>
+
+
+<div id="fr1" class="fr" style="">
+<textarea class="full" id="textfield"></textarea>
+
+<div class="full" id="textfieldFake"></div>
+<div class="showable" id="animation_container" style="position:absolute; overflow:hidden;background-color:#FFFFFF;">
+<canvas id="anicanvas" width="900" height="600" style="position: absolute; display: block; background-color:rgba(255, 255, 255, 1.00);" oncontextmenu="return false"></canvas>
+<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:960px; height:600px; position: absolute; left: 0px; top: 0px; display: block;">
+</div>
+</div>
+<p id="lvlLbl" data-locale="2"></p>
+<div id="stars"></div>
+<p id="display" data-locale="4"></p>
+<p id="points">0</p>
+<p id="down">-1</p>
+<p id="up">-1</p>
+<a class="genericButton" id="repeat" data-locale="7" style="bottom:40px; right:70px;z-index:10001;"></a>
+<a class="genericButton" id="beginning" data-locale="8" style="bottom:90px; right:70px;display:none;z-index:10001;"></a>
+</div>
+<div id="welcome">
+<img src="data/imgs/portada.jpg" />
+<a href="data/res/help.pdf" style="position:absolute;top:150px; left:297px; display:none;"><img alt="Ayuda" src="data/imgs/help.png" style="width:52px; height:52px;" /></a>
+<p id="title" data-locale="6" style="position:absolute;top:30px;left:0px; width:100%;font-size:35px;font-family:SourceSansProBold;text-align:center;color:white;letter-spacing: 1px;"></p>
+<p id="inst" data-locale="0" style="position:absolute;top:90px;left:30px; width:800px;font-size:18px;"></p>
+<a class="genericButton" id="start" data-locale="1" style="bottom:40px; right:70px;"></a>
+</div>
+</div>
+
+<audio preload="auto" id="nono">
+<source src="data/audios/ko.mp3" type="audio/mp3" />
+<source src="data/audios/ko.ogg" type="audio/ogg" />
+</audio>
+<audio preload="auto" id="ok">
+<source src="data/audios/ok.mp3" type="audio/mp3" />
+<source src="data/audios/ok.ogg" type="audio/ogg" />
+</audio>
+<audio preload="auto" id="end">
+<source src="data/audios/end.mp3" type="audio/mp3" />
+<source src="data/audios/end.ogg" type="audio/ogg" />
+</audio>
+<audio preload="auto" id="app">
+<source src="data/audios/app.mp3" type="audio/mp3" />
+<source src="data/audios/app.ogg" type="audio/ogg" />
+</audio>
+<audio preload="auto" id="fail">
+<source src="data/audios/fail.mp3" type="audio/mp3" />
+<source src="data/audios/fail.ogg" type="audio/ogg" />
+</audio>
+<audio preload="auto" id="fail2">
+<source src="data/audios/fail2.mp3" type="audio/mp3" />
+<source src="data/audios/fail2.ogg" type="audio/ogg" />
+</audio>
+<audio preload="auto" id="boing1">
+<source src="data/audios/boing1.mp3" type="audio/mp3" />
+<source src="data/audios/boing1.ogg" type="audio/ogg" />
+</audio>
+<audio preload="auto" id="boing2">
+<source src="data/audios/boing2.mp3" type="audio/mp3" />
+<source src="data/audios/boing2.ogg" type="audio/ogg" />
+</audio>
+<audio preload="auto" id="boing3">
+<source src="data/audios/boing3.mp3" type="audio/mp3" />
+<source src="data/audios/boing3.ogg" type="audio/ogg" />
+</audio>
+<audio preload="auto" id="bubbles">
+<source src="data/audios/bubbles.mp3" type="audio/mp3" />
+<source src="data/audios/bubbles.ogg" type="audio/ogg" />
+</audio>
+<audio preload="auto" id="honk">
+<source src="data/audios/honk.mp3" type="audio/mp3" />
+<source src="data/audios/honk.ogg" type="audio/ogg" />
+</audio>
+<audio preload="auto" id="paduuu">
+<source src="data/audios/paduuu.mp3" type="audio/mp3" />
+<source src="data/audios/paduuu.ogg" type="audio/ogg" />
+</audio>
+<audio preload="auto" id="bumblebee" loop>
+<source src="data/audios/bumblebee.ogg" type="audio/ogg" />
+<source src="data/audios/bumblebee.mp3" type="audio/mp3" />
+</audio>
+<audio preload="auto" id="prolog" loop>
+<source src="data/audios/prolog.ogg" type="audio/ogg" />
+<source src="data/audios/prolog.mp3" type="audio/mp3" />
+</audio>
+<audio preload="auto" id="coin">
+<source src="data/audios/coin.mp3" type="audio/mp3" />
+<source src="data/audios/coin.ogg" type="audio/ogg" />
+</audio>
+<audio preload="auto" id="bonus">
+<source src="data/audios/bonus.mp3" type="audio/mp3" />
+<source src="data/audios/bonus.ogg" type="audio/ogg" />
+</audio>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v652eace1692a40cfa3763df669d7439c1639079717194" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon='{"rayId":"71759f9c1d741476","token":"26ae7321be1940b294b85563a73418cc","version":"2021.12.0","si":100}' crossorigin="anonymous"></script>
+</body>
+</html>

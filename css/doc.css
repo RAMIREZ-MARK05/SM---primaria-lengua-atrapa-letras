@@ -1,0 +1,517 @@
+@charset "UTF-8";
+/*
+EDITAR LAS SIGUIENTES PROPIEDADES SI ES NECESARIO:
+*/
+/* color de fondo del enunciado */
+#enun2 {
+	background-color: #72BF44;
+}
+/* tamaño y color de texto del enunciado */
+#entxt {
+	font-size: 26px;
+	color:white;
+}
+/*
+END EDITAR LAS SIGUIENTES PROPIEDADES SI ES NECESARIO.
+NO TOCAR A PARTIR DE AQUÍ O TE CAERÁ UN HECHIZO DE LOS GORDOS.
+*/
+
+
+.star-five {
+   margin: -30px -75px;
+   position: relative;
+   display: inline-block;
+   color: #FFD700;
+   width: 0px;
+   height: 0px;
+   border-right:  100px solid transparent;
+   border-bottom: 70px  solid #FFD700;
+   border-left:   100px solid transparent;
+   transform: scale(.2,.2) rotate(35deg);
+}
+.star-five:before {
+   border-bottom: 80px solid #FFD700;
+   border-left: 30px solid transparent;
+   border-right: 30px solid transparent;
+   position: absolute;
+   height: 0;
+   width: 0;
+   top: -45px;
+   left: -65px;
+   display: block;
+   content: '';
+   -webkit-transform: rotate(-35deg);
+   -moz-transform:    rotate(-35deg);
+   -ms-transform:     rotate(-35deg);
+   -o-transform:      rotate(-35deg);
+
+}
+.star-five:after {
+   position: absolute;
+   display: block;
+   color: #FFD700;
+   top: 3px;
+   left: -105px;
+   width: 0px;
+   height: 0px;
+   border-right: 100px solid transparent;
+   border-bottom: 70px solid #FFD700;
+   border-left: 100px solid transparent;
+   -webkit-transform: rotate(-70deg);
+   -moz-transform:    rotate(-70deg);
+   -ms-transform:     rotate(-70deg);
+   -o-transform:      rotate(-70deg);
+   content: '';
+}
+
+
+#welcome {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width: 100%;
+    height: 100%;
+	z-index:10001;
+}
+#welcome img {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:960px;
+	height:600px;;
+}
+#lvlLbl {
+	position:absolute;
+	top:280px;
+	left:0px;
+	width:100%;
+	font-size:12px;
+	text-align:center;
+	font-family:SourceSansProBold;
+	color:white;
+	z-index:10001;
+	text-shadow: 0px 0px 7px rgba(35, 192, 13, 1);
+}
+#stars {
+	position:absolute;
+	top:280px;
+	left:0px;
+	width:100%;
+	text-align:center;
+	z-index:10001;
+	display:none;
+}
+#display {
+	position:absolute;
+	top:13px;
+	right:10px;
+	width:250px;
+	font-family:SourceSansProBold;
+	color:white;
+	font-size:16px;
+	text-align:right;
+	z-index:10001;
+}
+#points {
+	position:absolute;
+	top:13px;
+	left:10px;
+	font:36px SourceSansProBold;
+	color:white;
+	text-align:center;
+	z-index:10001;
+	background-color:#23C00D;
+    border-radius: 75px;
+	width:auto;
+    min-width: 30px;
+	height:50px;
+	line-height:50px;
+	padding: 0px 10px;
+}
+.dist {
+	position:absolute;
+	top:240px;
+	left:40px;
+	font:36px SourceSansProBold;
+	color:#FFD700;
+	text-align:center;
+	z-index:10002;
+}
+#up {
+	position:absolute;
+	top:13px;
+	left:40px;
+	font:36px SourceSansProBold;
+	color:#FFD700;
+	text-align:left;
+	z-index:10002;
+	opacity:1;
+	display:none;
+}
+#down {
+	position:absolute;
+	top:13px;
+	left:40px;
+	font:36px SourceSansProBold;
+	color:red;
+	text-align:left;
+	z-index:10001;
+	opacity:1;
+	display:none;
+}
+#down.goup{
+	display:block;
+	top: 13px;
+	opacity: 1;
+	animation: goup 0.7s;
+	animation-delay: 1.5s;
+	animation-iteration-count:1;
+	animation-fill-mode: forwards;
+	-webkit-animation: goup 0.7s;
+	-webkit-animation-delay: 1.5s; /* Safari 4.0 - 8.0 */
+	-webkit-animation-iteration-count:1;
+	-webkit-animation-fill-mode: forwards;
+	-moz-animation-fill-mode: forwards;
+	-o-animation-fill-mode: forwards;
+}
+@keyframes goup {
+	from {
+		top: 13px;
+		opacity: 1;
+	}
+	to {
+		top: -50px;
+		opacity: 0;
+	}
+}
+@-webkit-keyframes goup {
+	from {	
+		top: 13px;
+		opacity: 1;
+	}
+	to {
+		top: -50px;
+		opacity: 0;
+	}
+}
+
+
+/* cosas propias de este doc */
+::selection {
+  background: #fff2a8; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #fff2a8; /* Gecko Browsers */
+}
+.medio:before,.medio:after {
+	border-color:#72BF44;
+	border:none;
+}
+.medio:after {
+	border:none;
+}
+#anicanvas {
+	position:absolute;
+	overflow:hidden;
+	z-index:10000;
+}
+#textfield,#textfieldFake {
+	position:absolute;
+	top:80px;
+	left:80px;
+	width:760px;
+	height:190px;
+	font:35px SourceSansProRegular;
+	line-height: 45px;
+	border:4px solid #72BF44;
+	background:white;
+	border-radius:20px;
+	padding: 10px 20px;
+	animation-name: tfup;
+    animation-duration: 0.5s;
+	word-wrap: break-word;
+	display:none;
+	overflow:auto;
+	white-space: pre-wrap;
+}
+#textfieldFake {
+	display:block;
+	/*-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;*/
+}
+@keyframes tfup {
+	from {top:160px;}
+    to {top:80px;}
+}
+@keyframes tfdown {
+	from {top:80px;}
+	to {top:160px;}
+}
+#textfield.full {
+	top:160px;
+	display:block;
+	animation-name: tfdown;
+    animation-duration: 0.5s;
+}
+#textfieldFake.full {
+	top:160px;
+	display:none;
+	animation-name: tfdown;
+    animation-duration: 0.5s;
+}
+#kb:before {
+	content:"";
+	position:absolute;
+	top:-29px;
+	left:0px;
+	width:100%;
+	height:30px;
+	background-image:url(../data/imgs/graybar.png);
+	background-size:auto 100%;
+}
+#showhide {
+	/*width:68px;
+	height:64px;*/
+	width:64px;
+	height:50px;
+	position:absolute;
+	cursor:pointer;
+	bottom:0px;
+	left:70px;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	font:40px smsymbol;
+	color:white;
+	text-align: center;
+	background:black;
+	line-height: 50px;
+}
+.blink {
+	animation: blink-animation 0.7s steps(3, start) infinite;
+	-webkit-animation: blink-animation 0.7s steps(3, start) infinite;
+    position: relative;
+    display: inline-block;
+    width: 0px;
+    left: 0px;
+    margin-right: -1px;
+    height: 1em;
+    vertical-align: middle;
+    border-left: 1px solid black;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+#generalAD {
+	width:64px;
+	height:68px;
+	position:absolute;
+	top:76px;
+	left:0px;
+	background-image:url(../data/imgs/audio.png);
+	background-size:auto 100%;
+	cursor:pointer;
+	animation-name: ADkup;
+    animation-duration: 0.5s;
+}
+@keyframes ADkup {
+    from {top:160px;}
+    to {top:76px;}
+}
+@keyframes ADdown {
+    from {top:76px;}
+    to {top:160px;}
+}
+#generalAD.full {
+	top:160px;
+	animation-name: ADdown;
+    animation-duration: 0.5s;
+}
+#check {
+	width:64px;
+	height:68px;
+	position:absolute;
+	top:146px;
+	right:0px;
+	background-image:url(../data/imgs/check.png);
+	background-size:auto 100%;
+	cursor:pointer;
+	animation-name: checkup;
+    animation-duration: 0.5s;
+	z-index:9999;
+}
+@keyframes checkup {
+    from {top:435px;}
+    to {top:146px;}
+}
+@keyframes checkdown {
+    from {top:146px;}
+    to {top:435px;}
+}
+#check.full {
+	top:435px;
+	animation-name: checkdown;
+    animation-duration: 0.5s;
+}
+.tmp { /* cuando se teclea un acento */
+	/*text-decoration:underline;*/
+}
+.sel {
+	background: #fff2a8;
+}
+.err {
+	background:#ffb7b7;
+}
+#next,#prev {
+	width:64px;
+	height:68px;
+	position:absolute;
+	top:514px;
+	right:0px;
+	background-image:url(../data/imgs/prevnext.png);
+	background-size:auto 100%;
+	cursor:pointer;
+	z-index:9991;
+}
+#prev {
+	background-position:-64px 0px;
+	right:auto;
+	left:0px;
+}
+#next.full {
+}
+#prev.full {
+	
+}
+
+/*
+personalización by asignatura
+*/
+#points.lengua,#showhide.lengua{
+	background-color:#005ca5;
+}
+#points.mates,#showhide.mates{
+	background-color:#f6a800;
+}
+#points.ccss,#showhide.ccss{
+	background-color:#ee7f00;
+}
+#points.ccnn,#showhide.ccnn{
+	background-color:#218b29;
+}
+#points.musica,#showhide.musica{
+	background-color:#b5007b;
+}
+#points.plastica,#showhide.plastica{
+	background-color:#0099a1;
+}
+#points.autonomica,#showhide.autonomica{
+	background-color:#9bb943;
+}
+#points.religion,#showhide.religion{
+	background-color:#f6a80a;
+}
+#points.globalizado ,#showhide.globalizado {
+	background-color:#a7007c;
+}
+#points.frances,#showhide.frances{
+	background-color:#ff6666;
+}
+
+#lvlLbl.lengua{
+	text-shadow:0px 0px 7px #005ca5;
+}
+#lvlLbl.mates{
+	text-shadow:0px 0px 7px #f6a800;
+}
+#lvlLbl.ccss{
+	text-shadow:0px 0px 7px #ee7f00;
+}
+#lvlLbl.ccnn{
+	text-shadow:0px 0px 7px #218b29;
+}
+#lvlLbl.musica{
+	text-shadow:0px 0px 7px #b5007b;
+}
+#lvlLbl.plastica{
+	text-shadow:0px 0px 7px #0099a1;
+}
+#lvlLbl.autonomica{
+	text-shadow:0px 0px 7px #9bb943;
+}
+#lvlLbl.religion{
+	text-shadow:0px 0px 7px #f6a80a;
+}
+#lvlLbl.globalizado {
+	text-shadow:0px 0px 7px #a7007c;
+}
+#lvlLbl.frances{
+	text-shadow:0px 0px 7px #ff6666;
+}
+
+
+/*.logo, .logo embed, .logo img {
+	height:44px;
+	width:auto;
+}
+.tinyAudioButton {
+	background-color:#F7941D;
+	border-color:#F7941D;
+}*/
+/* OVERRIDES de estilo para asignatura ciencias naturales */
+/*.genericButton {
+	right:20px;
+	bottom:25px;
+}
+#enun,#enun2 {
+	min-height:61px;
+}
+.playButton:hover,.playButton:active,.uiButton:hover, .uiButton:active, .arrowLeft:hover, .arrowLeft:active, .arrowRight:hover, .arrowRight:active {
+	background: #00cc66;
+	color:white;
+	text-decoration:none;
+}
+.tInac, .tInac:hover, .tInac:active{ /* dejar esto aquí */
+/*	background-color:#BCBCBC;
+	color:white;
+	cursor:default;
+}
+.label,.chkButton,.chkButton:hover,.chkButton:active,.chkButton:visited{
+	border-color:#66cc66;
+}
+.chkButtonOK,.chkButtonKO,.chkButtonOK:hover,.chkButtonOK:active,.chkButtonOK:visited,.chkButtonKO:hover,.chkButtonKO:active,.chkButtonKO:visited{
+	border-color: #00cc66;
+	cursor:default;
+}
+.playButton,.playButton:visited,.genericButton,.genericLabel,.genericButton:visited { 
+	background: #66cc66;
+	color:white;
+}
+.genericButton:hover, .genericButton:active { 
+	background: #00cc66;
+}
+.genericOK,.genericOK:hover,.genericOK:active {/* dejar esto aquí */
+/*	background-color: #3C0;
+	color:white;
+	cursor:default;
+}
+.genericKO,.genericKO:hover,.genericKO:active {/* dejar esto aquí */
+/*	background-color: #C00;
+	color:white;
+	cursor:default;
+}
+
+.genericButton.tInac,.genericButton.tInac:visited,.genericButton.tInac:hover, .genericButton.tInac:active { 
+	background: #00cc66;
+	cursor:pointer;
+}
+*/
